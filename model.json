@@ -1,0 +1,47 @@
+{
+  "order_uid": "b563feb7b2b84b6test",
+  "delivery": {
+    "name": "Ivan Ivanov",
+    "phone": "+79260000000",
+    "zip": "123456",
+    "city": "Moscow",
+    "address": "Lenina 1",
+    "region": "Moscow region",
+    "email": "ivan@domain.com"
+  },
+  "payment": {
+    "transaction": "1234567890",
+    "request_id": "12345",
+    "currency": "RUB",
+    "provider": "Sberbank",
+    "amount": 1000,
+    "payment_dt": 1627182431,
+    "bank": "Sberbank",
+    "delivery_cost": 100,
+    "goods_total": 900,
+    "custom_fee": 0
+  },
+  "items": [
+    {
+      "chrt_id": 123,
+      "track_number": "TN123456",
+      "price": 900,
+      "rid": "item-001",
+      "name": "Product 1",
+      "sale": 0,
+      "size": "L",
+      "total_price": 900,
+      "nm_id": 999,
+      "brand": "Brand 1",
+      "status": 1
+    }
+  ],
+  "locale": "ru",
+  "internal_signature": "signature_12345",
+  "customer_id": "customer_12345",
+  "delivery_service": "service_1",
+  "shardkey": "shard_1",
+  "sm_id": 1,
+  "date_created": "2021-07-25T12:00:00",
+  "oof_shard": "shard_1"
+}

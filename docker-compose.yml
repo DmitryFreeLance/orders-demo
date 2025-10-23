@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports: ["5432:5432"]
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  nats-streaming:
+    image: nats-streaming:0.24
+    restart: unless-stopped
+    command: >
+      -p 4222 -m 8222
+      -cluster_id test-cluster
+      -store memory
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+  ordersvc:
+    build:
+      context: ./cmd/ordersvc
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:            # без условий
+      - db
+      - nats-streaming
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  publisher:
+    build:
+      context: ./cmd/publisher
+    depends_on:
+      - nats-streaming
+    volumes:
+      - ./model.json:/data/model.json:ro
+
+volumes:
+  dbdata:
